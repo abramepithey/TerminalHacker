@@ -1,0 +1,7 @@
+C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\bin\Debug\TerminalHacker.exe.config
+C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\bin\Debug\TerminalHacker.exe
+C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\bin\Debug\TerminalHacker.pdb
+C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\obj\Debug\TerminalHacker.csprojAssemblyReference.cache
+C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\obj\Debug\TerminalHacker.csproj.CoreCompileInputs.cache
+C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\obj\Debug\TerminalHacker.exe
+C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\obj\Debug\TerminalHacker.pdb
