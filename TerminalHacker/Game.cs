@@ -121,8 +121,6 @@ namespace TerminalHacker
         public void CompareWords(string key)
         {
             // Make two static words and compare them.
-
-            // Hamming method?
             string keyword = key.ToUpper();
             Console.WriteLine("Guess the Keyword.");
             int tries = 6;
@@ -143,7 +141,14 @@ namespace TerminalHacker
                     }
                     else
                     {
-                        Console.WriteLine("Not quite!  Try again.");
+                        int differences = WordDifference(keyword, response);
+                        if (differences == 100)
+                        {
+                            Console.WriteLine($"Enter a word with {keyword.Count()} characters.");
+                        } else
+                        {
+                            Console.WriteLine($"{differences} correct.");
+                        }
                     }
                 }
             }
@@ -156,23 +161,36 @@ namespace TerminalHacker
             CallSmallListAndKey();
         }
 
-        public void WordDifference(string one, string two)
+        public int WordDifference(string key, string response)
         {
+            string stringKey = key.ToUpper();
+            string stringResponse = response.ToUpper();
+            char[] arrayKey = stringKey.ToCharArray();
+            char[] arrayResponse = stringResponse.ToCharArray();
 
-            var strOne = one;
-            var strTwo = two;
+            int correctChars = 0;
 
-            var arrayOne = strOne.ToCharArray();
-            var arrayTwo = strTwo.ToCharArray();
-
-            var differentChars = arrayOne.Except(arrayTwo);
-
-            foreach (char character in differentChars)
+            if (arrayKey.Length != arrayResponse.Length)
             {
-                Console.WriteLine(character);  //Will print a
+                correctChars = 100;
             }
-            Console.ReadLine();
-
+            else
+            {
+                for (int i = 0; i < arrayResponse.Length; i++)
+                {
+                    if (arrayKey[i] == arrayResponse[i])
+                    {
+                        correctChars++;
+                        Console.Write(1);
+                    }
+                    else
+                    {
+                        Console.Write(0);
+                    }
+                }
+            }
+            Console.WriteLine();
+            return correctChars;
         }
     }
 }

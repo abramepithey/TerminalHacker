@@ -11,7 +11,6 @@ namespace TerminalHacker
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.WordDifference("aaa", "aaba");
             game.RunProgram();
         }
     }
