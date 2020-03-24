@@ -30,20 +30,17 @@ namespace TerminalHacker
                     case "1":
                     case "easy":
                         // load easy list
-                        SeedWords(1);
-                        CallSmallListAndKey();
+                        LoadLevel(1);
                         break;
                     case "2":
                     case "medium":
                         // load medium list
-                        SeedWords(2);
-                        CallSmallListAndKey();
+                        LoadLevel(2);
                         break;
                     case "3":
                     case "hard":
                         // load hard list
-                        SeedWords(3);
-                        CallSmallListAndKey();
+                        LoadLevel(3);
                         break;
                     case "4":
                     case "exit":
@@ -89,7 +86,7 @@ namespace TerminalHacker
             int keyNum = rand.Next(20);
             int key = smallRands[keyNum];
             Console.WriteLine(TestList[key]);
-            Console.ReadLine();
+            CompareWords(TestList[key]);
             Console.Clear();
         }
 
@@ -121,12 +118,60 @@ namespace TerminalHacker
             // Take organization from drofsnar as a starting point and make a way of putting good stylization around the app
         }
 
-        public void CompareWords()
+        public void CompareWords(string key)
         {
             // Make two static words and compare them.
 
             // Hamming method?
+            string keyword = key.ToUpper();
+            Console.WriteLine("Guess the Keyword.");
+            int tries = 6;
+            while (tries > 0)
+            {
+                string response = Console.ReadLine().ToUpper();
+                if (response == keyword)
+                {
+                    Console.WriteLine("Correct!");
+                    break;
+                }
+                else
+                {
+                    --tries;
+                    if (tries == 0)
+                    {
+                        Console.WriteLine("Too bad!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not quite!  Try again.");
+                    }
+                }
+            }
+            Console.ReadLine();
+        }
 
+        public void LoadLevel(int difficulty)
+        {
+            SeedWords(difficulty);
+            CallSmallListAndKey();
+        }
+
+        public void WordDifference(string one, string two)
+        {
+
+            var strOne = one;
+            var strTwo = two;
+
+            var arrayOne = strOne.ToCharArray();
+            var arrayTwo = strTwo.ToCharArray();
+
+            var differentChars = arrayOne.Except(arrayTwo);
+
+            foreach (char character in differentChars)
+            {
+                Console.WriteLine(character);  //Will print a
+            }
+            Console.ReadLine();
 
         }
     }
