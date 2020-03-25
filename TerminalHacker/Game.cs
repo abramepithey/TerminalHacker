@@ -149,6 +149,7 @@ namespace TerminalHacker
                         {
                             Console.WriteLine($"{differences} correct.");
                         }
+                        Console.WriteLine($"You have {tries} {(tries > 1 ? "tries":"try")} remaining.");
                     }
                 }
             }
@@ -181,15 +182,9 @@ namespace TerminalHacker
                     if (arrayKey[i] == arrayResponse[i])
                     {
                         correctChars++;
-                        Console.Write(1);
-                    }
-                    else
-                    {
-                        Console.Write(0);
                     }
                 }
             }
-            Console.WriteLine();
             return correctChars;
         }
     }
