@@ -73,9 +73,14 @@ namespace TerminalHacker
             Console.Clear();
             Random rand = new Random();
             List<int> smallRands = new List<int>();
-            for (int i = 0; i < 20; i++)
+            //int listLength = smallRands.Count;
+            while (smallRands.Count <= 20)
             {
-                smallRands.Add(rand.Next(100));
+                int nextRand = rand.Next(100);
+                if (!smallRands.Contains(nextRand))
+                {
+                    smallRands.Add(nextRand);
+                }
             }
             foreach (int num in smallRands)
             {
@@ -85,7 +90,7 @@ namespace TerminalHacker
             // Selecting one of those numbers to be the key
             int keyNum = rand.Next(20);
             int key = smallRands[keyNum];
-            Console.WriteLine(TestList[key]);
+            //Console.WriteLine(TestList[key]);
             CompareWords(TestList[key]);
             Console.Clear();
         }
@@ -110,12 +115,6 @@ namespace TerminalHacker
             {
                 TestList.Add(word);
             }
-        }
-
-        public void StylizeUI()
-        {
-            /* Lower Priority */
-            // Take organization from drofsnar as a starting point and make a way of putting good stylization around the app
         }
 
         public void CompareWords(string key)
@@ -144,12 +143,12 @@ namespace TerminalHacker
                         int differences = WordDifference(keyword, response);
                         if (differences == 100)
                         {
-                            Console.WriteLine($"Enter a word with {keyword.Count()} characters.");
+                            Console.Write($"Enter a word with {keyword.Count()} characters. ");
                         } else
                         {
-                            Console.WriteLine($"{differences} correct.");
+                            Console.Write($"{differences} correct. ");
                         }
-                        Console.WriteLine($"You have {tries} {(tries > 1 ? "tries":"try")} remaining.");
+                        Console.WriteLine($"You have {tries} {(tries > 1 ? "tries" : "try")} remaining.");
                     }
                 }
             }
