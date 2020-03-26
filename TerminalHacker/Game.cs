@@ -14,6 +14,7 @@ namespace TerminalHacker
         {
             TestList.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
+            GameTitle();
 
             bool keepRunning = true;
             while (keepRunning)
@@ -54,6 +55,7 @@ namespace TerminalHacker
                         Console.WriteLine($"{"|",-10}{"Please.",-30}{"1",-15}|");
                         Console.ReadLine();
                         Console.Clear();
+                        GameTitle();
                         break;
                 }
             }
@@ -71,6 +73,7 @@ namespace TerminalHacker
         {
             // Creating list of 20 random numbers, 1-100
             Console.Clear();
+            GameTitle();
             Random rand = new Random();
             List<int> smallRands = new List<int>();
             //int listLength = smallRands.Count;
@@ -84,15 +87,20 @@ namespace TerminalHacker
             }
             foreach (int num in smallRands)
             {
+                
                 Console.WriteLine(TestList[num]);
             }
-            Console.WriteLine(new string('-', 75));
+            Console.WriteLine(new string('=', 62));
             // Selecting one of those numbers to be the key
             int keyNum = rand.Next(20);
             int key = smallRands[keyNum];
             //Console.WriteLine(TestList[key]);
             CompareWords(TestList[key]);
             Console.Clear();
+            GameTitle();
+
+            //for (int i = 0; i < smallRands.Count; i++)
+
         }
 
         public void SeedWords(int difficulty)
@@ -100,15 +108,15 @@ namespace TerminalHacker
             List<string> words;
             if (difficulty == 1)
             {
-                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\EasyWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\EasyWords.txt").ToList();
             }
             else if (difficulty == 2)
             {
-                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\MediumWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\MediumWords.txt").ToList();
             }
             else
             {
-                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\HardWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\HardWords.txt").ToList();
             }
 
             foreach (string word in words)
@@ -137,6 +145,7 @@ namespace TerminalHacker
                     if (tries == 0)
                     {
                         Console.WriteLine("Too bad!");
+                        Console.WriteLine($"The keyword is {keyword}. You should really try harder next time.");
                     }
                     else
                     {
@@ -144,9 +153,10 @@ namespace TerminalHacker
                         if (differences == 100)
                         {
                             Console.Write($"Enter a word with {keyword.Count()} characters. ");
-                        } else
+                        }
+                        else
                         {
-                            Console.Write($"{differences} correct. ");
+                            Console.Write($"{differences} correct letter(s). ");
                         }
                         Console.WriteLine($"You have {tries} {(tries > 1 ? "tries" : "try")} remaining.");
                     }
@@ -185,6 +195,17 @@ namespace TerminalHacker
                 }
             }
             return correctChars;
+        }
+
+        public void GameTitle()
+        {
+            Console.WriteLine
+               (" _____               _         _    _____         _           \n" +
+                "|_   _|___ ___ _____|_|___ ___| |  |  |  |___ ___| |_ ___ ___ \n" +
+                "  | | | -_|  _|     | |   | .'| |  |     | .'|  _| '_| -_|  _|\n" +
+                "  |_| |___|_| |_|_|_|_|_|_|__,|_|  |__|__|__,|___|_,_|___|_|  \n");
+
+            Console.WriteLine(new string('=', 62));
         }
     }
 }
