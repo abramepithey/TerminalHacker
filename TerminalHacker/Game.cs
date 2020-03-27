@@ -69,17 +69,17 @@ namespace TerminalHacker
             }
         }
 
-        public void CallSmallListAndKey()
+        public void CallSmallListAndKey(int numberOfPotentialWords, int numberOfGuesses)
         {
-            // Creating list of 20 random numbers, 1-100
+            // Creating list of 20 random numbers, from 1 - the amount of words in our text file (100)
             Console.Clear();
             GameTitle();
             Random rand = new Random();
             List<int> smallRands = new List<int>();
             //int listLength = smallRands.Count;
-            while (smallRands.Count <= 20)
+            while (smallRands.Count < numberOfPotentialWords)
             {
-                int nextRand = rand.Next(100);
+                int nextRand = rand.Next(TestList.Count);
                 if (!smallRands.Contains(nextRand))
                 {
                     smallRands.Add(nextRand);
@@ -87,15 +87,14 @@ namespace TerminalHacker
             }
             foreach (int num in smallRands)
             {
-                
-                Console.WriteLine(TestList[num]);
+                Console.WriteLine(TestList[num].ToUpper());
             }
             Console.WriteLine(new string('=', 62));
             // Selecting one of those numbers to be the key
-            int keyNum = rand.Next(20);
+            int keyNum = rand.Next(numberOfPotentialWords);
             int key = smallRands[keyNum];
             //Console.WriteLine(TestList[key]);
-            CompareWords(TestList[key]);
+            CompareWords(TestList[key], numberOfGuesses);
             Console.Clear();
             GameTitle();
 
@@ -125,12 +124,12 @@ namespace TerminalHacker
             }
         }
 
-        public void CompareWords(string key)
+        public void CompareWords(string key, int numberOfTries)
         {
             // Make two static words and compare them.
             string keyword = key.ToUpper();
             Console.WriteLine("Guess the Keyword.");
-            int tries = 6;
+            int tries = numberOfTries;
             while (tries > 0)
             {
                 string response = Console.ReadLine().ToUpper();
@@ -168,7 +167,7 @@ namespace TerminalHacker
         public void LoadLevel(int difficulty)
         {
             SeedWords(difficulty);
-            CallSmallListAndKey();
+            CallSmallListAndKey(14, 5);
         }
 
         public int WordDifference(string key, string response)
