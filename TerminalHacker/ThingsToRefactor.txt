@@ -1,0 +1,8 @@
+﻿1.	Things to ask about
+		- how to properly use returns.
+			* only can think of using them while passing something in, e.g. Console.WriteLine(*ExampleMethod()*);
+		- how to make this more object oriented.
+			* and when not to.
+
+2.	Things to refactor
+		- make sure all methods are concise and are calling on each other, rather than all-encompassing
