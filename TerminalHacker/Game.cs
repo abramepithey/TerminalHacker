@@ -63,10 +63,18 @@ namespace TerminalHacker
 
         public void ReturnFromList(List<int> index)
         {
+            int ticker = 0;
             foreach (int entry in index)
             {
-            
-                Console.WriteLine($"║ + { TestList[entry - 1]}");
+                if (ticker % 2 == 0)
+                {
+                    Console.Write($"║ {TestList[entry - 1]}");
+                }
+                else
+                {
+                    Console.WriteLine($"{TestList[entry - 1]} ║");
+                }
+                ticker += 1;
             }
         }
 
@@ -86,10 +94,23 @@ namespace TerminalHacker
                     smallRands.Add(nextRand);
                 }
             }
-            foreach (int num in smallRands)
+            int ticker = 0;
+            foreach (int entry in smallRands)
             {
-                Console.WriteLine(TestList[num].ToUpper());
+                if (ticker % 2 == 0)
+                {
+                    Console.Write($"║ {TestList[entry].ToUpper()}");
+                }
+                else if (ticker % 2 != 0)
+                {
+                    Console.WriteLine($" ║ {TestList[entry].ToUpper()} ║");
+                }
+                ticker += 1;
             }
+            //foreach (int num in smallRands)
+            //{
+            //    Console.WriteLine($"║ {TestList[num].ToUpper()}");
+            //}
             Console.WriteLine(new string('═', 62));
             // Selecting one of those numbers to be the key
             int keyNum = rand.Next(numberOfPotentialWords);
@@ -108,15 +129,15 @@ namespace TerminalHacker
             List<string> words;
             if (difficulty == 1)
             {
-                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\EasyWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\EasyWords.txt").ToList();
             }
             else if (difficulty == 2)
             {
-                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\MediumWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\MediumWords.txt").ToList();
             }
             else
             {
-                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\HardWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\HardWords.txt").ToList();
             }
 
             foreach (string word in words)
@@ -156,7 +177,7 @@ namespace TerminalHacker
                         }
                         else
                         {
-                            Console.Write($"{differences} correct letter(s). ");
+                            Console.Write($"{differences} correct letter{(differences > 1 ? "s" : "")}. ");
                         }
                         Console.WriteLine($"You have {tries} {(tries > 1 ? "tries" : "try")} remaining.");
                     }
