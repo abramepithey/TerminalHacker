@@ -65,7 +65,8 @@ namespace TerminalHacker
         {
             foreach (int entry in index)
             {
-                Console.WriteLine(TestList[entry - 1]);
+            
+                Console.WriteLine($"║ + { TestList[entry - 1]}");
             }
         }
 
@@ -89,7 +90,7 @@ namespace TerminalHacker
             {
                 Console.WriteLine(TestList[num].ToUpper());
             }
-            Console.WriteLine(new string('=', 62));
+            Console.WriteLine(new string('═', 62));
             // Selecting one of those numbers to be the key
             int keyNum = rand.Next(numberOfPotentialWords);
             int key = smallRands[keyNum];
@@ -198,13 +199,26 @@ namespace TerminalHacker
 
         public void GameTitle()
         {
+            Console.Write('╔');
+            Console.Write(new String('═', 62));
+            Console.Write("╗\n");            
             Console.WriteLine
-               (" _____               _         _    _____         _           \n" +
-                "|_   _|___ ___ _____|_|___ ___| |  |  |  |___ ___| |_ ___ ___ \n" +
-                "  | | | -_|  _|     | |   | .'| |  |     | .'|  _| '_| -_|  _|\n" +
-                "  |_| |___|_| |_|_|_|_|_|_|__,|_|  |__|__|__,|___|_,_|___|_|  \n");
+               ("║ _____               _         _    _____         _           ║\n" +
+                "║|_   _|___ ___ _____|_|___ ___| |  |  |  |___ ___| |_ ___ ___ ║\n" +
+                "║  | | | -_|  _|     | |   | .'| |  |     | .'|  _| '_| -_|  _|║\n" +
+                "║  |_| |___|_| |_|_|_|_|_|_|__,|_|  |__|__|__,|___|_,_|___|_|  ║");
+            Console.Write('╠');
+            //Console.Write('╚');
+            Console.Write(new string('═', 62));
+            //Console.Write('╣');
+            Console.Write('╝');
+            Console.WriteLine();
+            Console.Write("║\n");
+            Console.Write("║\n");
 
-            Console.WriteLine(new string('=', 62));
+
+            //Console.WriteLine(new String('=', 62));
+
         }
     }
 }
