@@ -20,11 +20,19 @@ namespace TerminalHacker
             while (keepRunning)
             {
                 TestList.Clear();
-                Console.WriteLine("Choose a difficulty level: \n" +
-                    "1. Easy\n" +
-                    "2. Medium\n" +
-                    "3. Hard\n" +
-                    "4. Exit Program");
+                Console.Write('╔');
+                Console.Write(new String('═', 62));
+                Console.Write('╗');
+                Console.WriteLine();
+                Console.WriteLine($"║{"Choose a difficulty level:", -62}║\n" +
+                    $"║{"1. Easy", -62}║\n" +
+                    $"║{"2. Medium", -62}║\n" +
+                    $"║{"3. Hard", -62}║\n" +
+                    $"║{"4. Exit Program", -62}║");
+                Console.Write('╚');
+                Console.Write(new String('═', 62));
+                Console.Write('╝');
+                Console.WriteLine();
                 string response = Console.ReadLine().ToLower();
                 switch (response)
                 {
@@ -68,11 +76,11 @@ namespace TerminalHacker
             {
                 if (ticker % 2 == 0)
                 {
-                    Console.Write($"║ {TestList[entry - 1]}");
+                    Console.Write($" {TestList[entry - 1]}");
                 }
                 else
                 {
-                    Console.WriteLine($"{TestList[entry - 1]} ║");
+                    Console.WriteLine($"{TestList[entry - 1]} ");
                 }
                 ticker += 1;
             }
@@ -83,6 +91,12 @@ namespace TerminalHacker
             // Creating list of 20 random numbers, from 1 - the amount of words in our text file (100)
             Console.Clear();
             GameTitle();
+            Console.Write('╔');
+            Console.Write(new String('═', 29));
+            Console.Write('╦');
+            Console.Write(new String('═', 32));
+            Console.Write('╗');
+            Console.WriteLine();
             Random rand = new Random();
             List<int> smallRands = new List<int>();
             //int listLength = smallRands.Count;
@@ -99,11 +113,11 @@ namespace TerminalHacker
             {
                 if (ticker % 2 == 0)
                 {
-                    Console.Write($"║ {TestList[entry].ToUpper()}");
+                    Console.Write($"{'║', -2} {TestList[entry].ToUpper(), -27}");
                 }
                 else if (ticker % 2 != 0)
                 {
-                    Console.WriteLine($" ║ {TestList[entry].ToUpper()} ║");
+                    Console.WriteLine($"{'║', -2} {TestList[entry].ToUpper(), -29} ║");
                 }
                 ticker += 1;
             }
@@ -111,7 +125,12 @@ namespace TerminalHacker
             //{
             //    Console.WriteLine($"║ {TestList[num].ToUpper()}");
             //}
-            Console.WriteLine(new string('═', 62));
+            Console.Write('╚');
+            Console.Write(new String('═', 29));
+            Console.Write('╩');
+            Console.Write(new String('═', 32));
+            Console.Write('╝');
+            Console.WriteLine();
             // Selecting one of those numbers to be the key
             int keyNum = rand.Next(numberOfPotentialWords);
             int key = smallRands[keyNum];
@@ -129,15 +148,15 @@ namespace TerminalHacker
             List<string> words;
             if (difficulty == 1)
             {
-                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\EasyWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\EasyWords.txt").ToList();
             }
             else if (difficulty == 2)
             {
-                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\MediumWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\MediumWords.txt").ToList();
             }
             else
             {
-                words = System.IO.File.ReadLines(@"C:\Users\abram\source\repos\TerminalHacker\TerminalHacker\HardWords.txt").ToList();
+                words = System.IO.File.ReadLines(@"C:\ElevenFiftyProjects\Assignments\TerminalHacker\TerminalHacker\HardWords.txt").ToList();
             }
 
             foreach (string word in words)
@@ -228,14 +247,13 @@ namespace TerminalHacker
                 "║|_   _|___ ___ _____|_|___ ___| |  |  |  |___ ___| |_ ___ ___ ║\n" +
                 "║  | | | -_|  _|     | |   | .'| |  |     | .'|  _| '_| -_|  _|║\n" +
                 "║  |_| |___|_| |_|_|_|_|_|_|__,|_|  |__|__|__,|___|_,_|___|_|  ║");
-            Console.Write('╠');
-            //Console.Write('╚');
+            //Console.Write('╠');
+            Console.Write('╚');
             Console.Write(new string('═', 62));
             //Console.Write('╣');
             Console.Write('╝');
             Console.WriteLine();
-            Console.Write("║\n");
-            Console.Write("║\n");
+            
 
 
             //Console.WriteLine(new String('=', 62));
