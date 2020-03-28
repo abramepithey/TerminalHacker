@@ -68,11 +68,11 @@ namespace TerminalHacker
             {
                 if (ticker % 2 == 0)
                 {
-                    Console.Write($"║ {TestList[entry - 1]}");
+                    Console.Write($"║ {TestList[entry].ToUpper()}");
                 }
-                else
+                else if (ticker % 2 != 0)
                 {
-                    Console.WriteLine($"{TestList[entry - 1]} ║");
+                    Console.WriteLine($" ║ {TestList[entry].ToUpper()} ║");
                 }
                 ticker += 1;
             }
@@ -85,7 +85,6 @@ namespace TerminalHacker
             GameTitle();
             Random rand = new Random();
             List<int> smallRands = new List<int>();
-            //int listLength = smallRands.Count;
             while (smallRands.Count < numberOfPotentialWords)
             {
                 int nextRand = rand.Next(TestList.Count);
@@ -94,28 +93,12 @@ namespace TerminalHacker
                     smallRands.Add(nextRand);
                 }
             }
-            int ticker = 0;
-            foreach (int entry in smallRands)
-            {
-                if (ticker % 2 == 0)
-                {
-                    Console.Write($"║ {TestList[entry].ToUpper()}");
-                }
-                else if (ticker % 2 != 0)
-                {
-                    Console.WriteLine($" ║ {TestList[entry].ToUpper()} ║");
-                }
-                ticker += 1;
-            }
-            //foreach (int num in smallRands)
-            //{
-            //    Console.WriteLine($"║ {TestList[num].ToUpper()}");
-            //}
+            ReturnFromList(smallRands);
             Console.WriteLine(new string('═', 62));
+
             // Selecting one of those numbers to be the key
             int keyNum = rand.Next(numberOfPotentialWords);
             int key = smallRands[keyNum];
-            //Console.WriteLine(TestList[key]);
             CompareWords(TestList[key], numberOfGuesses);
             Console.Clear();
             GameTitle();
@@ -177,7 +160,7 @@ namespace TerminalHacker
                         }
                         else
                         {
-                            Console.Write($"{differences} correct letter{(differences > 1 ? "s" : "")}. ");
+                            Console.Write($"{differences} correct letter{(differences == 1 ? "" : "s")}. ");
                         }
                         Console.WriteLine($"You have {tries} {(tries > 1 ? "tries" : "try")} remaining.");
                     }
