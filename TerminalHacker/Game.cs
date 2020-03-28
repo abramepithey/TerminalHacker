@@ -76,11 +76,11 @@ namespace TerminalHacker
             {
                 if (ticker % 2 == 0)
                 {
-                    Console.Write($" {TestList[entry - 1]}");
+                    Console.Write($"{'║',-2} {TestList[entry].ToUpper(),-27}");
                 }
-                else
+                else if (ticker % 2 != 0)
                 {
-                    Console.WriteLine($"{TestList[entry - 1]} ");
+                    Console.WriteLine($"{'║',-2} {TestList[entry].ToUpper(),-29} ║");
                 }
                 ticker += 1;
             }
@@ -88,7 +88,7 @@ namespace TerminalHacker
 
         public void CallSmallListAndKey(int numberOfPotentialWords, int numberOfGuesses)
         {
-            // Creating list of 20 random numbers, from 1 - the amount of words in our text file (100)
+            // Creating list of (20) random numbers, from 1 - the amount of words in our text file (124)
             Console.Clear();
             GameTitle();
             Console.Write('╔');
@@ -99,7 +99,6 @@ namespace TerminalHacker
             Console.WriteLine();
             Random rand = new Random();
             List<int> smallRands = new List<int>();
-            //int listLength = smallRands.Count;
             while (smallRands.Count < numberOfPotentialWords)
             {
                 int nextRand = rand.Next(TestList.Count);
@@ -108,39 +107,21 @@ namespace TerminalHacker
                     smallRands.Add(nextRand);
                 }
             }
-            int ticker = 0;
-            foreach (int entry in smallRands)
-            {
-                if (ticker % 2 == 0)
-                {
-                    Console.Write($"{'║', -2} {TestList[entry].ToUpper(), -27}");
-                }
-                else if (ticker % 2 != 0)
-                {
-                    Console.WriteLine($"{'║', -2} {TestList[entry].ToUpper(), -29} ║");
-                }
-                ticker += 1;
-            }
-            //foreach (int num in smallRands)
-            //{
-            //    Console.WriteLine($"║ {TestList[num].ToUpper()}");
-            //}
+            ReturnFromList(smallRands);
             Console.Write('╚');
             Console.Write(new String('═', 29));
             Console.Write('╩');
             Console.Write(new String('═', 32));
             Console.Write('╝');
             Console.WriteLine();
+
             // Selecting one of those numbers to be the key
             int keyNum = rand.Next(numberOfPotentialWords);
             int key = smallRands[keyNum];
-            //Console.WriteLine(TestList[key]);
+
             CompareWords(TestList[key], numberOfGuesses);
             Console.Clear();
             GameTitle();
-
-            //for (int i = 0; i < smallRands.Count; i++)
-
         }
 
         public void SeedWords(int difficulty)
